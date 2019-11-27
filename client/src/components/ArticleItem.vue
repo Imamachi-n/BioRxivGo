@@ -1,13 +1,13 @@
 <template>
   <v-container>
-    <p>TEST</p>
+    <p>{{ article.Title }}</p>
   </v-container>
 </template>
 
 <script>
 export default {
   name: "ArticleItem",
-
+  props: ["article"],
   data: () => ({
     //
   }),

@@ -6,21 +6,23 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    test: "",
+    articles: [],
   },
   mutations: {
-    testMutation(state, test) {
-      state.test = test;
+    mutateArticles(state, articles) {
+      state.articles = articles;
     },
   },
   actions: {
-    testAction({ commit }, test) {
-      commit("testMutation", test);
+    async getArticlesAllAction({ commit }, articles) {
+      const { data } = await axios.get("/api/articles");
+      console.log(data);
+      commit("mutateArticles", data);
     },
   },
   getters: {
-    getTest(state) {
-      return state.test;
+    getArticles(state) {
+      return state.articles;
     },
   },
 });
