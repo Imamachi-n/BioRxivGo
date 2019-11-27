@@ -7,6 +7,35 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+type Article struct {
+	Title       string
+	Author      string
+	Link        string
+	Description string
+	Published   string
+	Doi         string
+}
+
+type Articles []*Article
+
+func GetArticlesAll(c *gin.Context) {
+	// Connect DB
+	db, err := connectDB()
+	if err != nil {
+		fmt.Println(err)
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+	}
+	// Close DB
+	defer closeDB(db)
+
+	// Get all articles data
+	var articles Articles
+	db.Find(&articles)
+
+	// Send JSON as a response
+	c.JSON(http.StatusOK, articles)
+}
+
 func Ping(c *gin.Context) {
 	c.JSON(200, gin.H{
 		"message": "pong",

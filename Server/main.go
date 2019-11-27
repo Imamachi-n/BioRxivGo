@@ -40,6 +40,7 @@ func main() {
 	// Simple group: api
 	api := router.Group("/api")
 	{
+		api.GET("/articles", route.GetArticlesAll)
 		api.GET("/ping", route.Ping)
 		api.GET("/user/:name", route.GetName)           // /user/naoto
 		api.GET("/user/:name/*action", route.GetAction) // /user/naoto/kick
