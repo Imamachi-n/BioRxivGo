@@ -17,10 +17,14 @@ migrate -path ./db/migrations -database postgres://postgres:postgres@localhost:5
 
 ### Library Candidates to create Back-end server
 
-* [mmcdole/gofeed](https://github.com/mmcdole/gofeed)
-* [golang-migrate/migrate](https://github.com/golang-migrate/migrate)
-* [gin-gonic/gin](https://github.com/gin-gonic/gin)
-* [lib/pq](https://github.com/lib/pq)
+```bash
+dep ensure
+```
+
+- [mmcdole/gofeed](https://github.com/mmcdole/gofeed)
+- [golang-migrate/migrate](https://github.com/golang-migrate/migrate)
+- [gin-gonic/gin](https://github.com/gin-gonic/gin)
+- [lib/pq](https://github.com/lib/pq)
 
 ```bash
 go get github.com/mmcdole/gofeed

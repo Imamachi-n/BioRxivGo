@@ -2,6 +2,14 @@
 
 
 [[projects]]
+  branch = "master"
+  digest = "1:b6cbeb5754d5c3eeac2fc259ecb9df1176f5e59c940ca09162cad2b9e8e13729"
+  name = "github.com/Imamachi-n/BioRxivGo"
+  packages = ["Server/route"]
+  pruneopts = "UT"
+  revision = "725ee11af568c74c413c38ba4962da43eec83460"
+
+[[projects]]
   digest = "1:3ee1d175a75b911a659fbd860060874c4f503e793c5870d13e5a0ede529a63cf"
   name = "github.com/gin-contrib/sse"
   packages = ["."]
@@ -50,6 +58,25 @@
   version = "v1.3.2"
 
 [[projects]]
+  digest = "1:a0216296da5c3191358b114fa8d2490477f5dff7380541551495b4f2a16989b3"
+  name = "github.com/jinzhu/gorm"
+  packages = [
+    ".",
+    "dialects/postgres",
+  ]
+  pruneopts = "UT"
+  revision = "81c17a7e2529c59efc4e74c5b32c1fb71fb12fa2"
+  version = "v1.9.11"
+
+[[projects]]
+  digest = "1:01ed62f8f4f574d8aff1d88caee113700a2b44c42351943fa73cc1808f736a50"
+  name = "github.com/jinzhu/inflection"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "f5c5f50e6090ae76a29240b61ae2a90dd810112e"
+  version = "v1.0.0"
+
+[[projects]]
   digest = "1:beb5b4f42a25056f0aa291b5eadd21e2f2903a05d15dfe7caf7eaee7e12fa972"
   name = "github.com/json-iterator/go"
   packages = ["."]
@@ -63,6 +90,19 @@
   packages = ["."]
   pruneopts = "UT"
   revision = "a0f5013415294bb94553821ace21a1a74c0298cc"
+  version = "v1.2.0"
+
+[[projects]]
+  digest = "1:0ead8e64fe356bd9221605e3ec40b4438509868018cbbbaaaff3ebae1b69b78b"
+  name = "github.com/lib/pq"
+  packages = [
+    ".",
+    "hstore",
+    "oid",
+    "scram",
+  ]
+  pruneopts = "UT"
+  revision = "3427c32cb71afc948325f299f040e53c1dd78979"
   version = "v1.2.0"
 
 [[projects]]
@@ -124,6 +164,11 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  input-imports = ["github.com/gin-gonic/gin"]
+  input-imports = [
+    "github.com/Imamachi-n/BioRxivGo/Server/route",
+    "github.com/gin-gonic/gin",
+    "github.com/jinzhu/gorm",
+    "github.com/jinzhu/gorm/dialects/postgres",
+  ]
   solver-name = "gps-cdcl"
   solver-version = 1
