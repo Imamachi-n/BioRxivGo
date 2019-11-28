@@ -24,10 +24,20 @@
 #   go-tests = true
 #   unused-packages = true
 
+# ignored = ["github.com/Imamachi-n/BioRxivGo/server/route"]
+
+# [[constraint]]
+#   name = "github.com/Imamachi-n/BioRxivGo"
+#   branch = "master"
+#   source = "github.com/Imamachi-n/BioRxivGo"
 
 [[constraint]]
   name = "github.com/gin-gonic/gin"
   version = "1.5.0"
+
+[[constraint]]
+  name = "github.com/jinzhu/gorm"
+  version = "1.9.11"
 
 [prune]
   go-tests = true

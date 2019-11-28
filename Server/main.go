@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/Imamachi-n/BioRxivGo/Server/route"
+	"github.com/Imamachi-n/BioRxivGo/server/route"
 	"github.com/gin-gonic/gin"
 )
 
@@ -41,12 +41,12 @@ func main() {
 	api := router.Group("/api")
 	{
 		api.GET("/articles", route.GetArticlesAll)
-		api.GET("/ping", route.Ping)
-		api.GET("/user/:name", route.GetName)           // /user/naoto
-		api.GET("/user/:name/*action", route.GetAction) // /user/naoto/kick
-		api.GET("/welcome", route.GetWelcome)           // /welcome?firstname=Naoto&lastname=Imamachi
+		api.POST("/articles", route.PostArticle)
 
-		api.POST("/login", route.PostEcho)
+		// /user/naoto/kick
+		api.GET("/user/:name/*action", route.GetAction)
+		// /welcome?firstname=Naoto&lastname=Imamachi
+		api.GET("/welcome", route.GetWelcome)
 	}
 
 	router.Run(PORT) // listen and serve on 0.0.0.0:8080

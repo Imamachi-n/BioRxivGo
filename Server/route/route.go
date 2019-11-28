@@ -21,6 +21,7 @@ type Articles []*Article
 func GetArticlesAll(c *gin.Context) {
 	// Connect DB
 	db, err := connectDB()
+	fmt.Println("TETS")
 	if err != nil {
 		fmt.Println(err)
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
@@ -36,15 +37,29 @@ func GetArticlesAll(c *gin.Context) {
 	c.JSON(http.StatusOK, articles)
 }
 
-func Ping(c *gin.Context) {
-	c.JSON(200, gin.H{
-		"message": "pong",
-	})
-}
+func PostArticle(c *gin.Context) {
+	// Connect DB
+	db, err := connectDB()
+	fmt.Println("TETS")
+	if err != nil {
+		fmt.Println(err)
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+	}
+	// Close DB
+	defer closeDB(db)
 
-func GetName(c *gin.Context) {
-	name := c.Param("name")
-	c.String(http.StatusOK, "Hello %s", name)
+	var json Article
+	if err := c.ShouldBindJSON(&json); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	if err := db.Create(&json); err.Error != nil {
+		fmt.Println(err)
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error})
+	}
+
+	c.String(http.StatusOK, "OK")
 }
 
 func GetAction(c *gin.Context) {
@@ -59,27 +74,4 @@ func GetWelcome(c *gin.Context) {
 	firstname := c.DefaultQuery("firstname", "Guest") // If not exists, return Guest in this case
 	lastname := c.Query("lastname")                   // if not exists, return "" empty string
 	c.String(http.StatusOK, "Hello %s %s", firstname, lastname)
-}
-
-type Login struct {
-	User     string `json:"user"`
-	Password string `json:"password"`
-}
-
-func PostEcho(c *gin.Context) {
-	// {
-	// 	"User": "naoto",
-	// 	"Password": "passwordDesu"
-	// }
-	var json Login
-	if err := c.ShouldBindJSON(&json); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-		return
-	}
-
-	fmt.Println(json)
-	c.JSON(http.StatusOK, gin.H{
-		"User":     json.User,
-		"Password": json.Password,
-	})
 }
