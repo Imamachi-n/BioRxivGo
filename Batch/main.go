@@ -11,7 +11,7 @@ import (
 
 func main() {
 	// Connect with postgreSQL Database
-	db, err := gorm.Open("postgres", "host=localhost port=5432 dbname=biorxiv user=postgres password=postgres sslmode=disable")
+	db, err := gorm.Open("postgres", "host=localhost port=5433 dbname=biorxiv user=postgres password=postgres sslmode=disable")
 	if err != nil {
 		fmt.Println(err)
 	}

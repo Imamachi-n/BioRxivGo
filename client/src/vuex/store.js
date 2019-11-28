@@ -15,7 +15,7 @@ export default new Vuex.Store({
   },
   actions: {
     async getArticlesAllAction({ commit }, articles) {
-      const { data } = await axios.get("/api/articles");
+      const { data } = await axios.get("http://localhost:9000/api/articles");
       console.log(data);
       commit("mutateArticles", data);
     },

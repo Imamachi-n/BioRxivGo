@@ -19,6 +19,10 @@ type Article struct {
 
 type Articles []*Article
 
+func goHome(c *gin.Context) {
+
+}
+
 func GetArticlesAll(c *gin.Context) {
 	// Connect DB
 	db, err := connectDB()

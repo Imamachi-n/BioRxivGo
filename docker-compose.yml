@@ -1,0 +1,28 @@
+version: "3"
+services:
+  postgres:
+    image: postgres:12
+    container_name: postgres
+    restart: always
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: biorxiv
+
+  backend:
+    # image: biorxivgoback:dev
+    build: ./server
+    container_name: golang_backend
+    restart: always
+    depends_on:
+      - postgres
+    ports:
+      - "9000:9000"
+
+  frontend:
+    build: ./client
+    container_name: nodejs_frontend
+    ports:
+      - "8080:8080"

@@ -5,6 +5,7 @@ import (
 	"time"
 
 	"github.com/Imamachi-n/BioRxivGo/server/route"
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 )
 
@@ -36,6 +37,11 @@ func SetupRouter() *gin.Engine {
 		)
 	}))
 	router.Use(gin.Recovery())
+
+	config := cors.DefaultConfig()
+	config.AllowAllOrigins = true
+	config.AllowMethods = []string{"GET", "POST", "PUT", "DELETE"}
+	router.Use(cors.New(config))
 
 	// Simple group: api
 	api := router.Group("/api")

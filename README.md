@@ -71,3 +71,10 @@ yarn serve
 docker build . -t biorxivgoback:dev
 docker run --rm -p 9000:9000 biorxivgoback:dev
 ```
+
+```bash
+docker-compose up
+migrate -path ./db/migrations -database postgres://postgres:postgres@localhost:5433/biorxiv?sslmode=disable up
+cd batch
+make dev
+```
