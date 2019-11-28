@@ -1,5 +1,5 @@
 create table articles(
-    article_id serial primary key,
+    id serial primary key,
     title text not null,
     author text not null,
     link text not null,

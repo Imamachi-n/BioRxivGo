@@ -8,6 +8,7 @@ import (
 )
 
 type Article struct {
+	Id          int64
 	Title       string
 	Author      string
 	Link        string
@@ -40,7 +41,6 @@ func GetArticlesAll(c *gin.Context) {
 func PostArticle(c *gin.Context) {
 	// Connect DB
 	db, err := connectDB()
-	fmt.Println("TETS")
 	if err != nil {
 		fmt.Println(err)
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
@@ -60,6 +60,51 @@ func PostArticle(c *gin.Context) {
 	}
 
 	c.String(http.StatusOK, "OK")
+}
+
+func PutArticle(c *gin.Context) {
+	// Connect DB
+	db, err := connectDB()
+	if err != nil {
+		fmt.Println(err)
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+	}
+	// Close DB
+	defer closeDB(db)
+
+	doi := c.Param("doi")
+	fmt.Println(doi)
+
+	var json Article
+	if err := c.ShouldBindJSON(&json); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	c.String(http.StatusOK, "OK")
+}
+
+func DeleteArticle(c *gin.Context) {
+	// Connect DB
+	db, err := connectDB()
+	if err != nil {
+		fmt.Println(err)
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+	}
+	// Close DB
+	defer closeDB(db)
+
+	// Delete a given article
+	doi := c.Param("doi")
+	var articles Articles
+	db.Where("doi = ?", doi).Find(&articles)
+
+	if len(articles) > 0 {
+		db.Delete(&articles[0])
+	}
+
+	c.String(http.StatusOK, "OK")
+	// c.JSON(http.StatusOK, articles[0])
 }
 
 func GetAction(c *gin.Context) {

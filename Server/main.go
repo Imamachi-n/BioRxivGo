@@ -41,7 +41,9 @@ func main() {
 	api := router.Group("/api")
 	{
 		api.GET("/articles", route.GetArticlesAll)
-		api.POST("/articles", route.PostArticle)
+		api.POST("/article", route.PostArticle)
+		api.PUT("/article/:doi", route.PutArticle)
+		api.DELETE("/article/:doi", route.DeleteArticle)
 
 		// /user/naoto/kick
 		api.GET("/user/:name/*action", route.GetAction)
