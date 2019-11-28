@@ -53,7 +53,7 @@ func getRSS(db *gorm.DB) {
 		data.Published = item.Published
 		extension := item.Extensions
 		doi := extension["dc"]["identifier"]
-		data.Doi = doi[0].Value // DOI
+		data.Doi = strings.Replace(doi[0].Value, "doi:", "", -1) // DOI
 
 		// Insert article info into database if the article does not exist
 		if err := db.Create(&data); err.Error != nil {

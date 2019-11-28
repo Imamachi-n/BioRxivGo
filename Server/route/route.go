@@ -22,7 +22,6 @@ type Articles []*Article
 func GetArticlesAll(c *gin.Context) {
 	// Connect DB
 	db, err := connectDB()
-	fmt.Println("TETS")
 	if err != nil {
 		fmt.Println(err)
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})

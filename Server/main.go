@@ -10,7 +10,7 @@ import (
 
 const PORT = ":9000"
 
-func main() {
+func SetupRouter() *gin.Engine {
 	// Disable Console Color, you don't need console color when writing the logs to file.
 	// gin.DisableConsoleColor()
 
@@ -50,6 +50,10 @@ func main() {
 		// /welcome?firstname=Naoto&lastname=Imamachi
 		api.GET("/welcome", route.GetWelcome)
 	}
+	return router
+}
 
+func main() {
+	router := SetupRouter()
 	router.Run(PORT) // listen and serve on 0.0.0.0:8080
 }
