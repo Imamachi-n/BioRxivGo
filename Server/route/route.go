@@ -72,16 +72,40 @@ func PutArticle(c *gin.Context) {
 	// Close DB
 	defer closeDB(db)
 
-	doi := c.Param("doi")
-	fmt.Println(doi)
-
 	var json Article
 	if err := c.ShouldBindJSON(&json); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
 
-	c.String(http.StatusOK, "OK")
+	// Get an article with a given DOI
+	doi := c.Param("doi")
+	var articles Articles
+	db.Where("doi = ?", doi).Find(&articles)
+	json.Id = articles[0].Id
+
+	if json.Title != "" {
+		articles[0].Title = json.Title
+	}
+	if json.Author != "" {
+		articles[0].Author = json.Author
+	}
+	if json.Link != "" {
+		articles[0].Link = json.Link
+	}
+	if json.Description != "" {
+		articles[0].Description = json.Description
+	}
+	if json.Published != "" {
+		articles[0].Published = json.Published
+	}
+	if json.Doi != "" {
+		articles[0].Doi = json.Doi
+	}
+	db.Save(&articles[0])
+
+	// c.String(http.StatusOK, "OK")
+	c.JSON(http.StatusOK, articles[0])
 }
 
 func DeleteArticle(c *gin.Context) {
