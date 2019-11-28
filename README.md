@@ -4,6 +4,10 @@
 
 The Curated Preprint Server for Genomics & BioInformatics.
 
+## Technologies
+
+![tech](./img/technologies.png)
+
 ## Setup environment
 
 ### 1. PostgreSQL Database
@@ -58,4 +62,12 @@ yarn serve
 - [mmcdole/gofeed](https://github.com/mmcdole/gofeed)
 - [golang-migrate/migrate](https://github.com/golang-migrate/migrate)
 - [gin-gonic/gin](https://github.com/gin-gonic/gin)
+- [gorm](https://github.com/jinzhu/gorm)
 - [lib/pq](https://github.com/lib/pq)
+- [testify](https://github.com/stretchr/testify)
+- [dep](https://github.com/golang/dep)
+
+```bash
+docker build . -t biorxivgoback:dev
+docker run --rm -p 9000:9000 biorxivgoback:dev
+```
