@@ -73,12 +73,16 @@ yarn serve
 
 ![docker-compose](./img/dockerCompose.png)
 
+### How to start each docker container
+
 ```bash
 docker-compose up
 ./setup4docker.sh
 ```
 
 ### How to build each docker container image
+
+Example:
 
 ```bash
 docker build . -t biorxivgoback:dev
