@@ -24,5 +24,6 @@ services:
   frontend:
     build: ./client
     container_name: nodejs_frontend
+    restart: always
     ports:
       - "8080:8080"

@@ -67,14 +67,20 @@ yarn serve
 - [testify](https://github.com/stretchr/testify)
 - [dep](https://github.com/golang/dep)
 
-```bash
-docker build . -t biorxivgoback:dev
-docker run --rm -p 9000:9000 biorxivgoback:dev
-```
+## Docker Compose
+
+### Image
+
+![docker-compose](./img/dockerCompose.png)
 
 ```bash
 docker-compose up
-migrate -path ./db/migrations -database postgres://postgres:postgres@localhost:5433/biorxiv?sslmode=disable up
-cd batch
-make dev
+./setup4docker.sh
+```
+
+### How to build each docker container image
+
+```bash
+docker build . -t biorxivgoback:dev
+docker run --rm -p 9000:9000 biorxivgoback:dev
 ```
